@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const connection = require("./database/config");
 const app = express();
 
+const categoriesController = require("./categories/CategoriesController");
+const articlesController = require("./articles/ArticlesController");
+
 //View
 app.set('view engine','ejs');
 
@@ -26,6 +29,9 @@ connection
 app.get("/", (req,res) => {
     res.render('index');
 })
+
+app.use('/', categoriesController);
+app.use('/', articlesController);
 
 app.listen(8080, () =>{
     console.log('Server is running');
